@@ -103,7 +103,7 @@ public class CouchAppActivity extends Activity {
 		installProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		installProgress.show();
 
-		couchServiceConnection = CouchDB.getService(getBaseContext(), "http://junk.arandomurl.com/", "release-1", mCallback);
+		couchServiceConnection = CouchDB.getService(getBaseContext(), "https://github.com/downloads/couchbaselabs/Android-Couchbase/", "release-0.1", mCallback);
 	}
 
 	private void couchError() {
