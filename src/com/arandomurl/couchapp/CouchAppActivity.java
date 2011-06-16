@@ -16,7 +16,6 @@ import android.content.DialogInterface;
 import android.content.ServiceConnection;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -62,9 +61,11 @@ public class CouchAppActivity extends Activity {
 
 	private final ICouchClient mCallback = new ICouchClient.Stub() {
 		@Override
-		public void couchStarted(String host, int port) throws RemoteException {
+		public void couchStarted(String host, int port) {
 
-			installProgress.dismiss();
+			if (installProgress != null) {
+				installProgress.dismiss();
+			}
 
 			String url = "http://" + host + ":" + Integer.toString(port) + "/";
 		    String ip = getLocalIpAddress();
@@ -75,14 +76,16 @@ public class CouchAppActivity extends Activity {
 		}
 
 		@Override
-		public void installing(int completed, int total) throws RemoteException {
+		public void installing(int completed, int total) {
+			ensureProgressDialog();
 			installProgress.setTitle("Initialising CouchDB");
 			installProgress.setProgress(completed);
 			installProgress.setMax(total);
 		}
 
 		@Override
-		public void downloading(int completed, int total) throws RemoteException {
+		public void downloading(int completed, int total) {
+			ensureProgressDialog();
 			installProgress.setTitle("Downloading CouchDB");
 			installProgress.setProgress(completed);
 			installProgress.setMax(total);
@@ -95,14 +98,15 @@ public class CouchAppActivity extends Activity {
 		}
 	};
 
-	private void startCouch() {
-
+	private void ensureProgressDialog() {
 		installProgress = new ProgressDialog(CouchAppActivity.this);
 		installProgress.setTitle(" ");
 		installProgress.setCancelable(false);
 		installProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		installProgress.show();
+	}
 
+	private void startCouch() {
 		couchServiceConnection = CouchDB.getService(getBaseContext(), "https://github.com/downloads/couchbaselabs/Android-Couchbase/", "release-0.1", mCallback);
 	}
 
