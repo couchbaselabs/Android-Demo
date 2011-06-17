@@ -99,11 +99,13 @@ public class CouchAppActivity extends Activity {
 	};
 
 	private void ensureProgressDialog() {
-		installProgress = new ProgressDialog(CouchAppActivity.this);
-		installProgress.setTitle(" ");
-		installProgress.setCancelable(false);
-		installProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		installProgress.show();
+		if (installProgress == null) {
+			installProgress = new ProgressDialog(CouchAppActivity.this);
+			installProgress.setTitle(" ");
+			installProgress.setCancelable(false);
+			installProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			installProgress.show();
+		}
 	}
 
 	private void startCouch() {
