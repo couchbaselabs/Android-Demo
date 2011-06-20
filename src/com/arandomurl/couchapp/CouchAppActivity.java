@@ -84,14 +84,6 @@ public class CouchAppActivity extends Activity {
 		}
 
 		@Override
-		public void downloading(int completed, int total) {
-			ensureProgressDialog();
-			installProgress.setTitle("Extracting CouchDB");
-			installProgress.setProgress(completed);
-			installProgress.setMax(total);
-		}
-
-		@Override
 		public void exit(String error) {
 			Log.v(TAG, error);
 			couchError();
