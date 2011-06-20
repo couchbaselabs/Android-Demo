@@ -86,7 +86,7 @@ public class CouchAppActivity extends Activity {
 		@Override
 		public void downloading(int completed, int total) {
 			ensureProgressDialog();
-			installProgress.setTitle("Downloading CouchDB");
+			installProgress.setTitle("Extracting CouchDB");
 			installProgress.setProgress(completed);
 			installProgress.setMax(total);
 		}
@@ -109,7 +109,7 @@ public class CouchAppActivity extends Activity {
 	}
 
 	private void startCouch() {
-		couchServiceConnection = CouchDB.getService(getBaseContext(), "https://github.com/downloads/couchbaselabs/Android-Couchbase/", "release-0.1", mCallback);
+		couchServiceConnection = CouchDB.getService(getBaseContext(), null, "release-0.1", mCallback);
 	}
 
 	private void couchError() {
