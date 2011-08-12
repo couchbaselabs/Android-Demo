@@ -25,7 +25,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.couchbase.libcouch.AndCouch;
 import com.couchbase.libcouch.CouchDB;
 import com.couchbase.libcouch.ICouchClient;
 
