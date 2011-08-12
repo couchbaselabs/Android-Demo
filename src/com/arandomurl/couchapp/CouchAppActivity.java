@@ -100,7 +100,7 @@ public class CouchAppActivity extends Activity {
 	}
 
 	private void startCouch() {
-		couchServiceConnection = CouchDB.getService(getBaseContext(), null, "release-0.1", mCallback);
+		couchServiceConnection = CouchDB.getService(getBaseContext(), "release-0.1", mCallback);
 	}
 
 	private void couchError() {
