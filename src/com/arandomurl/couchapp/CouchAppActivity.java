@@ -100,12 +100,12 @@ public class CouchAppActivity extends Activity {
 	}
 
 	private void startCouch() {
-		couchServiceConnection = CouchDB.getService(getBaseContext(), "release-0.1", mCallback);
+		couchServiceConnection = CouchDB.getService(getBaseContext(), mCallback);
 	}
 
 	private void couchError() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(self);
-		builder.setMessage("Error")
+		builder.setMessage("Unknown Error")
 				.setPositiveButton("Try Again?",
 						new DialogInterface.OnClickListener() {
 							@Override
