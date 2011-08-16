@@ -25,7 +25,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.couchbase.libcouch.CouchDB;
+import com.couchbase.libcouch.CouchbaseEmbeddedServer;
 import com.couchbase.libcouch.ICouchClient;
 
 public class CouchAppActivity extends Activity {
@@ -100,7 +100,8 @@ public class CouchAppActivity extends Activity {
 	}
 
 	private void startCouch() {
-		couchServiceConnection = CouchDB.getService(getBaseContext(), mCallback);
+		CouchbaseEmbeddedServer couch = new CouchbaseEmbeddedServer(getBaseContext(), mCallback);
+		couchServiceConnection = couch.startCouchbase();
 	}
 
 	private void couchError() {
